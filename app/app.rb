@@ -1,7 +1,9 @@
 require 'sinatra/base'
+require 'sinatra/activerecord'
 
 module Backend
   class App < Sinatra::Application
+    register Sinatra::ActiveRecordExtension
 
     post  '/' do
       200
