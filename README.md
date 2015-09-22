@@ -12,12 +12,12 @@ Specification
 Implement a web application in Ruby that:
 * can receive webhooks from Mandrill
 * processes the webhook data and stores it into a suitable data store
-* displays the following statistics
-* total number of emails sent
-* total number of emails opened
-* total number of clicks
-* open rate per email type
-* click rate per email type
+* displays the following statistics:
+  - total number of emails sent
+  - total number of emails opened
+  - total number of clicks
+  - open rate per email type
+  - click rate per email type
 
 You can use any Ruby frameworks/libraries/gems of your choice, and data store of your choice.
 
