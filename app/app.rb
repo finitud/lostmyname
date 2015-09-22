@@ -7,5 +7,9 @@ module Backend
       200
     end
 
+    get '/stats' do
+      200
+    end
+
   end
 end
