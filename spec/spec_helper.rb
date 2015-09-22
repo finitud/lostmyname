@@ -1,4 +1,5 @@
 require 'rack/test'
+require 'pry'
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
@@ -20,7 +21,9 @@ RSpec.configure do |config|
   # config.example_status_persistence_file_path = "spec/examples.txt"
 
   config.disable_monkey_patching!
-  config.warnings = true
+
+  # Disable warnings due to pry being quite loud otherwise
+  config.warnings = false
 
   if config.files_to_run.one?
     config.default_formatter = 'doc'

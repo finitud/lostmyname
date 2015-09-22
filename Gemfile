@@ -8,6 +8,7 @@ gem 'thin'
 group :test, :development do
   gem 'rspec'
   gem 'rack-test'
+  gem 'pry-byebug'
 end
 
 group :production do
