@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<h1>Stats</h1>
+
+<p>Emails sent: <%= @emails_sent %></p>
+
+<p>Emails opened: <%= @emails_opened %></p>
+
+<p>Clicks: <%= @clicks %></p>
+
+<p>Open rates per email type:</p>
+<ul>
+  <% @open_rates.each do |type, rate| %>
+    <li><%= type %>: <%= sprintf('%.2f', rate * 100.0) %> %</li>
+  <% end %>
+</ul>
+
+<p>Click rates per email type:</p>
+<ul>
+  <% @click_rates.each do |type, rate| %>
+    <li><%= type %>: <%= sprintf('%.2f', rate * 100.0) %> %</li>
+  <% end %>
+</ul>
+
+</body>
+</html>

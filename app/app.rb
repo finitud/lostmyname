@@ -8,6 +8,8 @@ module Backend
   class App < Sinatra::Application
     register Sinatra::ActiveRecordExtension
 
+    Tilt.register Tilt::ERBTemplate, 'html.erb'
+
     post  '/' do
       payload = request.body.read
 
@@ -34,7 +36,25 @@ module Backend
     end
 
     get '/stats' do
-      200
+      emails_by_event = EmailData.group(:event).count
+
+      @emails_sent = emails_by_event.fetch('send', 0)
+      @emails_opened = emails_by_event.fetch('open', 0)
+      @clicks = emails_by_event.fetch('click', 0)
+
+      @open_rates = {}
+      @click_rates = {}
+
+      emails_per_type = EmailData.group(:email_type).count
+      emails_opened_per_type = EmailData.where(event: 'open').group(:email_type).count
+      clicks_per_type = EmailData.where(event: 'click').group(:email_type).count
+
+      emails_per_type.keys.each do |key|
+        @open_rates[key] =  emails_opened_per_type.fetch(key, 0.0).to_f / emails_per_type.fetch(key)
+        @click_rates[key] =  clicks_per_type.fetch(key, 0.0).to_f / emails_per_type.fetch(key)
+      end
+
+      erb :stats
     end
 
   end
