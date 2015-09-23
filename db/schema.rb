@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922130407) do
+ActiveRecord::Schema.define(version: 20150923111526) do
 
   create_table "email_data", force: :cascade do |t|
     t.string   "address"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150922130407) do
     t.datetime "timestamp"
   end
 
+  add_index "email_data", ["email_type"], name: "index_email_data_on_email_type"
   add_index "email_data", ["event"], name: "index_email_data_on_event"
 
 end
